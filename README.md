@@ -16,7 +16,7 @@ To simulate a realistic environment for music denoising research, we collect a l
 ## Denosing samples
 
 <p align="center">
-  <img src="images/spcm.png" alt="Comparison of spectrograms for different methods." width="50%">
+  <img src="images/spcm.png" alt="Comparison of spectrograms for different methods." width="100%">
 </p>
 
 <p align="center"><b>Figure 2:Comparison of spectrograms for different methods. </b></p>
