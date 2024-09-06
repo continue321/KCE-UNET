@@ -11,7 +11,7 @@ During concerts, people often spontaneously record memorable moments with their 
 ### Clean concert music
 To replicate the authentic auditory experience of live concert environments, we are the first to propose an extensive dataset. This dataset consists of high-quality recordings of concert music across multiple major languages.
 ### Noisy concert music
-To simulate a realistic environment for music denoising research, we collect a large number of noise samples, specifically targeting background noise commonly found in live concert settings. These noise samples include various types of applause, cheering, and screaming, sourced from Freesound\footnote{https://freesound.org/} and various online platforms. 
+To simulate a realistic environment for music denoising research, we collect a large number of noise samples, specifically targeting background noise commonly found in live concert settings. These noise samples include various types of applause, cheering, and screaming, sourced from Freesound {https://freesound.org/} and various online platforms. 
 
 ## Denosing samples
 
