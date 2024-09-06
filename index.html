@@ -1,0 +1,571 @@
+<html>
+<head>
+
+	<title>MusicECAN: Automatic Recorded Music Denoising Network with Efficient Channel Attention</title>
+
+	<link rel="stylesheet" href="media/styles.css" type="text/css" />
+
+
+</head>
+<body>
+	<div id="wrapper">
+		<div id="header-titles">
+			<h2><a href="" target="_blank">MusicECAN: Automatic Recorded Music Denoising Network with Efficient Channel Attention</a></h2>
+
+			<p>Haonan Cheng, Shulin Liu and Long Ye</p>
+			<img style='width: 40px; vertical-align:middle;' src='image/github.png'>
+<div style='vertical-align:middle; display:inline;'>
+<a href="https://github.com/slliugit/slliugit.github.io">See the repository on Github</a>
+</div>
+
+		<div id="body">
+                        <figure>
+			<img style="width: 1000px;   display: block;  margin-left: auto;  margin-right: auto;;"  src="image/fig5.png" alt="distribution">
+                        <figcaption> Fig.  The framework of the proposed MusicECAN, which includes two components: feature learning module and noise filtering module.</figcaption>
+                        </figure>
+
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="./dist/css/trackswitch.min.css" />
+<style type="text/css">
+.tgd  {border-collapse:collapse;border-color:#ccc;border-spacing:0;}
+.tgd td{background-color:#fff;border-color:#ccc;border-style:solid;border-width:0px;color:#333;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tgd th{background-color:#f0f0f0;border-color:#ccc;border-style:solid;border-width:0px;color:#333;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tgd .tgd-erhq{background-color:#505050;color:#ffffff;font-weight:bold;text-align:left;vertical-align:top}
+.tgd .tgd-0lax{text-align:left;vertical-align:top}
+</style>
+
+			<h2>Listening test examples</h2>
+			<p>Comparisons of different audio denoising methods. We compare the denoising results of state-of-the-art denoising methods and our MusicECAN. In each group, the top recording is the noisy music.</p>
+<div class="player">
+</p>
+<ts-track title="Original">
+
+        <ts-source src="./media/1/noisy.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DCCRN">
+
+        <ts-source src="./media/1/DCCRN.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DS-Net(full)">
+
+        <ts-source src="./media/1/DS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Historical">
+
+        <ts-source src="./media/1/His.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Proposed">
+
+        <ts-source src="./media/1/ECAN.wav"></ts-source>
+
+    </ts-track> 
+</div>
+<div class="player">
+</p>  
+<ts-track title="Original">
+
+        <ts-source src="./media/2/noisy.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DCCRN">
+
+        <ts-source src="./media/2/DCCRN.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DS-Net(full)">
+
+        <ts-source src="./media/2/DS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Historical">
+
+        <ts-source src="./media/2/HIS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Proposed">
+
+        <ts-source src="./media/2/ECAN.wav"></ts-source>
+
+    </ts-track>
+</div>
+<div class="player">
+</p>
+<ts-track title="Original">
+
+        <ts-source src="./media/3/noisy.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DCCRN">
+
+        <ts-source src="./media/3/DCCRN.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DS-Net(full)">
+
+        <ts-source src="./media/3/DS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Historical">
+
+        <ts-source src="./media/3/HIS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Proposed">
+
+        <ts-source src="./media/3/ECAN.wav"></ts-source>
+
+    </ts-track>
+</div>
+<div class="player">
+</p>  
+<ts-track title="Original">
+
+        <ts-source src="./media/4/noisy.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DCCRN">
+
+        <ts-source src="./media/4/DCCRN.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DS-Net(full)">
+
+        <ts-source src="./media/4/DS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Historical">
+
+        <ts-source src="./media/4/HIS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Proposed">
+
+        <ts-source src="./media/4/ECAN.wav"></ts-source>
+
+    </ts-track>
+</div>
+<div class="player">
+</p>  
+<ts-track title="Original">
+
+        <ts-source src="./media/6/noisy.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DCCRN">
+
+        <ts-source src="./media/6/DCCRN.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DS-Net(full)">
+
+        <ts-source src="./media/6/DS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Historical">
+
+        <ts-source src="./media/6/HIS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Proposed">
+
+        <ts-source src="./media/6/ECAN.wav"></ts-source>
+
+    </ts-track>
+</div>
+<div class="player">
+</p>  
+<ts-track title="Original">
+
+        <ts-source src="./media/7/noisy.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DCCRN">
+
+        <ts-source src="./media/7/DCCRN.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DS-Net(full)">
+
+        <ts-source src="./media/7/DS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Historical">
+
+        <ts-source src="./media/7/HIS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Proposed">
+
+        <ts-source src="./media/7/ECAN.wav"></ts-source>
+
+    </ts-track>
+</div>
+<div class="player">
+</p>  
+<ts-track title="Original">
+
+        <ts-source src="./media/8/noisy.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DCCRN">
+
+        <ts-source src="./media/8/DCCRN.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DS-Net(full)">
+
+        <ts-source src="./media/8/DS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Historical">
+
+        <ts-source src="./media/8/HIS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Proposed">
+
+        <ts-source src="./media/8/ECAN.wav"></ts-source>
+
+    </ts-track>
+</div>
+<div class="player">
+</p>  
+<ts-track title="Original">
+
+        <ts-source src="./media/9/noisy.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DCCRN">
+
+        <ts-source src="./media/9/DCCRN.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DS-Net(full)">
+
+        <ts-source src="./media/9/DS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Historical">
+
+        <ts-source src="./media/9/HIS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Proposed">
+
+        <ts-source src="./media/9/ECAN.wav"></ts-source>
+
+    </ts-track>
+</div>
+<div class="player">
+</p>  
+<ts-track title="Original">
+
+        <ts-source src="./media/10/noisy.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DCCRN">
+
+        <ts-source src="./media/10/DCCRN.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DS-Net(full)">
+
+        <ts-source src="./media/10/DS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Historical">
+
+        <ts-source src="./media/10/HIS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Proposed">
+
+        <ts-source src="./media/10/ECAN.wav"></ts-source>
+
+    </ts-track>
+</div>
+<div class="player">
+</p>  
+<ts-track title="Original">
+
+        <ts-source src="./media/11/noisy.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DCCRN">
+
+        <ts-source src="./media/11/DCCRN.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DS-Net(full)">
+
+        <ts-source src="./media/11/DS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Historical">
+
+        <ts-source src="./media/11/HIS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Proposed">
+
+        <ts-source src="./media/11/ECAN.wav"></ts-source>
+
+    </ts-track>
+</div>
+<div class="player">
+</p>  
+<ts-track title="Original">
+
+        <ts-source src="./media/12/noisy.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DCCRN">
+
+        <ts-source src="./media/12/DCCRN.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DS-Net(full)">
+
+        <ts-source src="./media/12/DS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Historical">
+
+        <ts-source src="./media/12/HIS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Proposed">
+
+        <ts-source src="./media/12/ECAN.wav"></ts-source>
+
+    </ts-track>
+</div>
+<div class="player">
+</p>  
+<ts-track title="Original">
+
+        <ts-source src="./media/13/noisy.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DCCRN">
+
+        <ts-source src="./media/13/DCCRN.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DS-Net(full)">
+
+        <ts-source src="./media/13/DS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Historical">
+
+        <ts-source src="./media/13/HIS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Proposed">
+
+        <ts-source src="./media/13/ECAN.wav"></ts-source>
+
+    </ts-track>
+</div>
+<div class="player">
+</p>  
+<ts-track title="Original">
+
+        <ts-source src="./media/14/noisy.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DCCRN">
+
+        <ts-source src="./media/14/DCCRN.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DS-Net(full)">
+
+        <ts-source src="./media/14/DS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Historical">
+
+        <ts-source src="./media/14/HIS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Proposed">
+
+        <ts-source src="./media/14/ECAN.wav"></ts-source>
+
+    </ts-track>
+</div>
+<div class="player">
+</p>
+<ts-track title="Original">
+
+        <ts-source src="./media/16/noisy.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DCCRN">
+
+        <ts-source src="./media/16/DCCRN.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DS-Net(full)">
+
+        <ts-source src="./media/16/DS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Historical">
+
+        <ts-source src="./media/16/HIS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Proposed">
+
+        <ts-source src="./media/16/ECAN.wav"></ts-source>
+
+    </ts-track>
+</div>
+<div class="player">
+</p>
+<ts-track title="Original">
+
+        <ts-source src="./media/17/noise.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DCCRN">
+
+        <ts-source src="./media/17/DCCRN.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DS-Net(full)">
+
+        <ts-source src="./media/17/DS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Historical">
+
+        <ts-source src="./media/17/HIS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Proposed">
+
+        <ts-source src="./media/17/ECAN.wav"></ts-source>
+
+    </ts-track>
+</div>
+<div class="player">
+</p>
+<ts-track title="Original">
+
+        <ts-source src="./media/18/noisy.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DCCRN">
+
+        <ts-source src="./media/18/DCCRN.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DS-Net(full)">
+
+        <ts-source src="./media/18/DS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Historical">
+
+        <ts-source src="./media/18/HIS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Proposed">
+
+        <ts-source src="./media/18/ECAN.wav"></ts-source>
+
+    </ts-track>
+</div>
+<div class="player">
+</p>
+<ts-track title="Original">
+
+        <ts-source src="./media/19/noisy.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DCCRN">
+
+        <ts-source src="./media/19/DCCRN.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DS-Net(full)">
+
+        <ts-source src="./media/19/DS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Historical">
+
+        <ts-source src="./media/19/HIS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Proposed">
+
+        <ts-source src="./media/19/ECAN.wav"></ts-source>
+
+    </ts-track>
+</div><div class="player">
+</p>
+<ts-track title="Original">
+
+        <ts-source src="./media/20/noisy.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DCCRN">
+
+        <ts-source src="./media/20/DCCRN.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="DS-Net(full)">
+
+        <ts-source src="./media/20/DS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Historical">
+
+        <ts-source src="./media/20/HIS.wav"></ts-source>
+
+    </ts-track>
+    <ts-track title="Proposed">
+
+        <ts-source src="./media/20/ECAN.wav"></ts-source>
+
+    </ts-track>
+</div>		
+                                                <h2>Source code</h2>
+			<p> Coming soon!         </p>
+		</div>
+		<div id="footer">
+
+			<hr>
+
+		</div>
+
+	</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="crossorigin="anonymous"></script>
+<script src="./dist/js/trackswitch.min.js"></script>
+<script type="text/javascript">
+
+    jQuery(document).ready(function() {
+
+        jQuery(".player").trackSwitch(); // All other players are default
+
+    });
+var settings = {
+    onlyradiosolo: true,
+    repeat: false,
+};
+$(".player").trackSwitch(settings);
+
+</script>
